@@ -30,6 +30,7 @@ data class UISettings(
     val udpFakeCount: Int = 1,
     val dropSack: Boolean = false,
     val fakeOffset: Int = 0,
+    val telegramBypassEnabled: Boolean = true,
 ) {
     enum class DesyncMethod {
         None, Split, Disorder, Fake, OOB, DISOOB;
@@ -98,6 +99,7 @@ data class UISettings(
                 fakeOffset = preferences.getString("byedpi_fake_offset", null)?.toIntOrNull() ?: 0,
                 hostsMode = hostsMode,
                 hosts = hosts,
+                telegramBypassEnabled = preferences.getBoolean("byedpi_telegram_bypass", true),
             )
         }
     }

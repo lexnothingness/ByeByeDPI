@@ -82,7 +82,6 @@ class ByeDpiUISettingsFragment : PreferenceFragmentCompat() {
         val splitTlsRec = findPreferenceNotNull<CheckBoxPreference>("byedpi_tlsrec_enabled")
         val splitTlsRecPosition = findPreferenceNotNull<EditTextPreference>("byedpi_tlsrec_position")
         val splitTlsRecAtSni = findPreferenceNotNull<CheckBoxPreference>("byedpi_tlsrec_at_sni")
-
         hostsBlacklist.isVisible = hostsMode == Blacklist
         hostsWhitelist.isVisible = hostsMode == Whitelist
 

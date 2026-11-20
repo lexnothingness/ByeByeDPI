@@ -87,6 +87,9 @@
     <string name="byedpi_fake_offset_setting">Смещение поддельных пакетов</string>
     <string name="byedpi_drop_sack_setting">Отбрасывать SACK</string>
     <string name="desync_udp_category">UDP</string>
+    <string name="byedpi_telegram_category">Telegram</string>
+    <string name="byedpi_telegram_bypass_setting">Обход блокировки Telegram</string>
+    <string name="byedpi_telegram_bypass_summary">Отдельная группа desync (disorder) по IP-адресам и портам Telegram (443, 80, 5222) — MTProto не содержит SNI/Host, поэтому обычные правила по доменам его не видят. Не поможет против полной блокировки IP оператором (блэкхол на уровне SYN) — только против сигнатурной DPI</string>
     <string name="desync_http_category">HTTP</string>
     <string name="desync_https_category">HTTPS</string>
     <string name="byedpi_protocols_category">Протоколы</string>

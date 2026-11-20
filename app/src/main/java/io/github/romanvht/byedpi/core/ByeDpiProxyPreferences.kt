@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.util.Log
 import io.github.romanvht.byedpi.data.UISettings
 import io.github.romanvht.byedpi.utility.DomainListUtils
+import io.github.romanvht.byedpi.utility.TelegramBypass
 import io.github.romanvht.byedpi.utility.checkIpAndPortInCmd
 import io.github.romanvht.byedpi.utility.getCmdArgs
 import io.github.romanvht.byedpi.utility.getCmdEnable
@@ -151,6 +152,29 @@ class ByeDpiProxyUIPreferences(val settings: UISettings = UISettings()) : ByeDpi
             if (settings.dropSack) args.add("-Y")
 
             args.add("-An")
+
+            if (settings.telegramBypassEnabled) {
+                // MTProto/obfuscated2 has no TLS ClientHello or HTTP Host, so it never matches
+                // an -H/+s/+h scoped group. Scope these groups by Telegram's own IP ranges and
+                // ports instead - check_l34() matches those straight off the destination
+                // address, before any payload parsing, so it also catches raw MTProto.
+                // -V only takes one port/range at a time, hence one group per port.
+                //
+                // disorder-only, no -f/--fake: --fake resends the real first chunk under a
+                // decoy after the fake one, relying on its TTL expiring before reaching the
+                // real server. That TTL has to be hand-tuned per network path - too high and
+                // the fake chunk survives to the real server and corrupts the live stream
+                // (confirmed: WSAECONNRESET against a live, unrelated host on a real network,
+                // not just against Telegram). disorder alone reorders the client's own real
+                // bytes and carries no such risk.
+                val ipset = "-j:${TelegramBypass.cidrRanges.joinToString(" ")}"
+                for (port in TelegramBypass.ports) {
+                    args.add(ipset)
+                    args.add("-V$port")
+                    args.add("-d1")
+                    args.add("-An")
+                }
+            }
 
             if (settings.desyncUdp) {
                 args.add("-Ku")

@@ -223,4 +223,17 @@
 
     </androidx.preference.PreferenceCategory>
 
+    <androidx.preference.PreferenceCategory
+        android:title="@string/byedpi_telegram_category"
+        app:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:key="byedpi_telegram_bypass"
+            android:title="@string/byedpi_telegram_bypass_setting"
+            android:summary="@string/byedpi_telegram_bypass_summary"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+    </androidx.preference.PreferenceCategory>
+
 </PreferenceScreen>

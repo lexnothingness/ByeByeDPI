@@ -87,6 +87,9 @@
     <string name="byedpi_fake_offset_setting">Fake packet offset</string>
     <string name="byedpi_drop_sack_setting">Drop SACK</string>
     <string name="desync_udp_category">UDP</string>
+    <string name="byedpi_telegram_category">Telegram</string>
+    <string name="byedpi_telegram_bypass_setting">Bypass Telegram blocking</string>
+    <string name="byedpi_telegram_bypass_summary">A separate disorder-based desync group scoped by Telegram\'s IP ranges and ports (443, 80, 5222) - MTProto has no SNI/Host, so ordinary domain-based rules never see it. Won\'t help against a carrier-level IP blackhole (SYN dropped outright) - only against signature-based DPI</string>
     <string name="desync_http_category">HTTP</string>
     <string name="desync_https_category">HTTPS</string>
     <string name="byedpi_protocols_category">Protocols</string>
